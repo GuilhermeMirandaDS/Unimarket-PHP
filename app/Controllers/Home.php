@@ -6,6 +6,12 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('register');
+        $agent = $this->request->getUserAgent();
+
+        $data = [
+            'isMobile' => $agent->isMobile(),
+        ];
+
+        return view('home', $data);
     }
 }

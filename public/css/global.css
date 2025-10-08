@@ -1,8 +1,8 @@
-main.container{
+.container{
   max-width: 1728px;
   margin: 0 auto;
 }
-header .container{
+.container{
     max-width: 1728px;
 }
 *{
