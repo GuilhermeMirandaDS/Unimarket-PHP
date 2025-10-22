@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="footer-item links">
-                    <a href="" class="footer-links-item"><b>Unimar</b></a>
+                    <h3 class="footer-links-item"><b>Unimar</b></h3>
                     <a href="" class="footer-links-item">Sobre Nós</a>
                     <a href="" class="footer-links-item">Institucional</a>
                     <a href="" class="footer-links-item">Universo Unimar</a>
@@ -17,14 +17,14 @@
                 </div>
 
                 <div class="footer-item links">
-                    <a href="" class="footer-links-item"><b>Ajuda</b></a>
+                    <h3 class="footer-links-item"><b>Ajuda</b></h3>
                     <a href="" class="footer-links-item">Consultas e Diplomas</a>
                     <a href="" class="footer-links-item">Contato</a>
                     <a href="" class="footer-links-item">Identidade Visual</a>
                     <a href="" class="footer-links-item">Ouvidoria</a>
                 </div>
 
-                <div class="footer-item">
+                <div class="footer-item contato">
                     <img src="<?= base_url('assets/img/unimar-logo.svg') ?>" alt="Unimar">
                     <p>Av. Higino Muzi Filho, 1001</p>
                     <a href="">+55 (14) 99849-2952</a>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="footer-end">
-                Copyright © Unimar 2025
+                Copyright © Unimar 2025 | UniApps
             </div>
         </div>
     </footer>

@@ -4,23 +4,23 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User extends Model
+class Product extends Model
 {
-    protected $table            = 'users';
-    protected $primaryKey       = 'ra';
-    protected $useAutoIncrement = false;
-    protected $returnType       = 'object';
+    protected $table            = 'products';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields = [
-        'ra',
-        'name',
-        'email',
-        'password',
-        'tag',
-        'image',
-        'created_at',
-        'updated_at'
+    protected $allowedFields    = [
+        'nome',
+        'descricao',
+        'categoria',
+        'preco',
+        'estoque',
+        'vendedor',
+        'tags',
+        'created_at'
     ];
 
     protected bool $allowEmptyInserts = false;

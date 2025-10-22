@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    public function index(): string
+    public function index()
     {
         $agent = $this->request->getUserAgent();
 
@@ -12,6 +12,9 @@ class Home extends BaseController
             'isMobile' => $agent->isMobile(),
         ];
 
+        if (!session()->get('logged_in')){
+            return redirect()->to(base_url('/enter'));
+        }
         return view('home', $data);
     }
 }

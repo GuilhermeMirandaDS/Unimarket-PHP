@@ -1,23 +1,51 @@
+@font-face {
+    font-family: 'Lexend';
+    src: url('../assets/fonts/Lexend-VariableFont.ttf');
+}
+
+*{
+    font-family: 'Lexend', sans-serif !important;
+}
+
+body{
+    overflow-x: hidden;
+    padding-top: 100px;
+    padding-bottom: 501px;
+}
 .container{
   max-width: 1728px;
   margin: 0 auto;
 }
-.container{
-    max-width: 1728px;
-}
-*{
-    font-family: Lexend, sans-serif;
-}
-
 
 .color-blue{
     color: #007bff;
 }
 
-
-
+/* HEADER */
+header{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+}
+.header-mid{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-height: 100px;
+    padding: 30px;
+    background-color: #fff;
+}
+.menu-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
 .menu-tab{
     font-weight: 600;
+    align-items: center;
+    gap: 6px;
 }
 .menu-tab:hover{
     color: #007bff;
@@ -57,6 +85,9 @@
     font-size: 16px;
     color: #333;
     padding: 4px 0;
+}
+.user-info{
+    flex-direction: row;
 }
 .second-level-user{
     display: none;
@@ -98,13 +129,144 @@
     color: #007bff;
     text-align: left;
 }
+.cart{
+    position: relative;
+}
+.cart-number{
+    background-color: #007bff;
+    padding: 2px 6px;
+    border-radius: 100%;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 12px;
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 6px;
+}
+.search-bar input{
+    width: 0px;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 10px;
+    will-change: width;
+    transition: all 0.5s ease;
+}
+.search-bar:hover input,
+.search-bar input:focus{
+    width: 400px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+}
+.search-bar button{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #007bff;
+    user-select: none;
+    transition: opacity 0.3s ease;
+}
+.search-bar button:hover{
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+.search-bar button svg{
+    stroke: #fff;
+}
+
+/* Fim do Header */
+
+/* Footer */
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+}
+.footer-full{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff;
+}
+.footer-grid{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding: 60px;
+    width: 100%;
+}
+.footer-item{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+    color: #fff !important;
+}
+.footer-item h2{
+    font-size: 48px;
+    font-weight: 600;
+}
+.footer-item h3{
+    font-size: 20px;
+    font-weight: 600;
+}
+.footer-item input{
+    padding: 14px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 100%;
+}
+.footer-item input:focus{
+    outline: none !important;
+}
+.footer-item a{
+    font-size: 20px;
+    font-weight: 400;
+    transition: opacity 0.3s ease;
+}
+.footer-item a:hover{
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+.socials{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: start;
+    gap: 10px;
+}
+.socials svg{
+    fill: #fff;
+}
+
+.footer-end{
+    border-top: solid 1px #4299FF;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    padding: 40px 0;
+}
 
 
-
-
-
-
-
+/* Fim do footer */
 
 .banner-home{
   background: url('/Assets/img/banner-home.png') no-repeat center center;
@@ -131,7 +293,8 @@
     max-width: 70%;
     color: grey;
 }
-.banner-search-input:focus{
+.banner-search-input:focus,
+.search-bar:focus{
     border: none !important;
 }
 .search-form button{
