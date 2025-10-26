@@ -24,6 +24,12 @@ body{
     color: #007bff;
 }
 
+.section-title{
+    font-weight: 600;
+    font-size: 32px;
+    color: #1e1e1e;
+}
+
 /* HEADER */
 header{
     position: fixed;
@@ -359,10 +365,14 @@ footer{
 
 
 /* Carrossel de produtos */
-.showcase-1{
-    border: solid 1px #e6e6e6;
-    border-radius: 20px;
+.showcase{
+    margin: 4rem 0;
     padding: 16px;
+}
+
+.showcase-name{
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .product-name{
@@ -427,7 +437,119 @@ footer{
 }
 
 
+/* Card de produto */
 
+.product{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+.product .space-image{
+    width: 100%;
+    height: 30%;
+}
+.product .space-image img{
+    width: 100%;
+    height: auto;
+}
+.product .product-info{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.product .product-name{
+    font-weight: 500;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    max-width: 100%;
+}
+
+.product .vendedor-image{
+    width: 40px;
+    border-radius: 100px;
+}
+
+.product .vendedor-image img{
+    width: 100%;
+}
+
+.product .vendedor-text{
+    font-weight: 600;
+    font-size: 12px;
+    color: #0377ff;
+}
+
+.product .vendedor-info{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 4px 0;
+}
+
+.product .vendedor-name span{
+    font-size: 12px;
+    font-weight: 600;
+    color: #1e1e1e;
+}
+.product .vendedor-name p{
+    font-size: 10px;
+    font-weight: 600;
+    color: #0377ff;
+}
+
+.product .tags{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+    gap: 4px;
+}
+.product .tags .tag{
+    padding: 6px;
+    border-radius: 50px;
+    font-size: 10px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.product-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product .product-price{
+    font-weight: 400;
+    font-size: 24px;
+    color: #1e1e1e;
+}
+.product .actions{
+    display: flex;
+    align-items: center;
+}
+.product .actions .fav{
+    width: 30px;
+    height: 30px;
+}
+.product .btn-buy-card{
+    background-color: #0377ff;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fim do card de produto */
 
 /* Página de Produto */
 .product-container{
@@ -544,8 +666,29 @@ footer{
 
 /* Modal Add Product */
 
-.add-product{
+.overlay{
+    position: fixed;
+    width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-product{
+    width: 500px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     padding: 12px 16px;
@@ -554,38 +697,38 @@ footer{
     border-radius: 24px;
     padding: 30px;
 }
-.add-product h2{
+.modal-product h2{
     font-weight: 600;
     font-size: 36px;
     width: 100%;
 }
-.add-product form{
+.modal-product form{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
     height: 100%;
 }
-.add-product div{
+.modal-product div{
     display: flex;
     flex-direction: column;
     align-items: start;
     width: 100%;
 }
-.add-product input{
+.modal-product input{
     background-color: #f1f1f1;
     width: 100%;
     padding: 10px;
     border-radius: 12px;
     font-size: 14px;
 }
-.add-product select{
+.modal-product select{
     width: 100%;
     background-color: #f1f1f1;
     padding: 10px;
     border-radius: 12px;
 }
-.add-product-btn{
+.modal-product-btn{
     background-color: #007bff;
     color: white;
     padding: 10px;
@@ -596,20 +739,6 @@ footer{
 
 
 /* user info page */
-.sidebar-overlay{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-.sidebar-overlay.show {
-    opacity: 1;
-    pointer-events: auto;
-}
 .sidebar-profile{
     width: 25%;
     background-color: #f1f1f1;

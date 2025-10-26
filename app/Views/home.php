@@ -56,9 +56,25 @@
 
     <div class="showcase">
         <div class="container">
+            <div class="showcase-name section-title"><?= esc($category1->nome) ?></div>
             <div class="products-swiper swiper">
                 <div class="swiper-wrapper">
                     <?php foreach ($prodShow1 as $item): ?>
+                        <div class="swiper-slide">
+                            <?= view('components/product-card', ['product' => $item]) ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="showcase">
+        <div class="container">
+            <div class="showcase-name section-title"><?= esc($category2->nome) ?></div>
+            <div class="products-swiper swiper">
+                <div class="swiper-wrapper">
+                    <?php foreach ($prodShow2 as $item): ?>
                         <div class="swiper-slide">
                             <?= view('components/product-card', ['product' => $item]) ?>
                         </div>
