@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('css/global.css') ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="<?= base_url('js/script.js') ?>"></script>
     <title>Unimarket - Home</title>
 </head>
 <body>
@@ -54,11 +58,11 @@
             <?php
                 } else { 
             ?>
-                <img src="<?php?>" alt="userPFP" class="user-pfp"/>
+                <img src="" alt="userPFP" class="user-pfp"/>
 
                 <div class="user-info-header">
-                    <span class="user-name-header"><?php?></span>
-                    <p class="user-tag-header"><?php?></p>
+                    <span class="user-name-header"></span>
+                    <p class="user-tag-header"></p>
                 </div>
 
                 <ul class="second-level-user">
@@ -76,7 +80,7 @@
                 }
             ?>
 
-                <a href="<?php?>" class="cart">
+                <a href="" class="cart">
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H6.85333C7.17489 3.99637 7.48692 4.10906 7.73194 4.31733C7.97696 4.5256 8.13845 4.8154 8.18667 5.13333L8.82667 9.33333L10.6667 21.3333L25.3333 20L28 9.33333H8.82667" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.6001 27.3333H14.7334" stroke="#1E1E1E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.6001 27.3333H22.7334" stroke="#1E1E1E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span class="cart-number">0</span>
                 </a>

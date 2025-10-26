@@ -9,6 +9,9 @@
 
 body{
     overflow-x: hidden;
+    position: relative;
+}
+.site-main{
     padding-top: 100px;
     padding-bottom: 501px;
 }
@@ -228,6 +231,7 @@ footer{
     outline: none;
     border-radius: 10px;
     width: 100%;
+    color: #000000;
 }
 .footer-item input:focus{
     outline: none !important;
@@ -269,48 +273,57 @@ footer{
 /* Fim do footer */
 
 .banner-home{
-  background: url('/Assets/img/banner-home.png') no-repeat center center;
-  background-size: cover;
+    width: 100%;
 }
-.home-frase{
-    font-size: 60px;
+.banner-home .swiper{
+    overflow: visible !important;
+}
+.banner-home .item{
+    position: relative;
+}
+.banner-home .item .info{
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: #fff;
+}
+.banner-home .swiper-slide  .item .info .banner-home-tag{
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.banner-home .swiper-slide  .item .info h2{
+    font-size: 72px;
     font-weight: 600;
-    max-width: 600px;
-    line-height: 50px;
+    margin: 6px 0;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.5s ease;
 }
-
-.apresentation{
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.search-form{
+.banner-home .swiper-slide  .item .info .data-evento{
     display: flex;
     align-items: center;
+    justify-content: start;
+    gap: 20px;
+    font-size: 24px;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.5s ease;
 }
-.banner-search-input{
-    max-width: 70%;
-    color: grey;
+.banner-home .swiper-slide  .item .info .data-evento .data,
+.banner-home .swiper-slide  .item .info .data-evento .hora{
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
-.banner-search-input:focus,
-.search-bar:focus{
-    border: none !important;
+.swiper-slide-active .item .info .data-evento,
+.swiper-slide-active .item .info h2,
+.swiper-slide-active .item .info .banner-home-tag{
+    transform: translateY(0px) !important;
+    opacity: 1 !important;
+    transition: all 0.5s ease;
 }
-.search-form button{
-    right: 0;
-    padding: 8px 50px;
-    border-radius: 8px;
-    background-color: #1162C2;
-    box-shadow: 0px 0px 2px rgba(0,0,0,0.4);
-}
-.search-form button:hover{
-    opacity: 0.8;
-    transition: ease-in-out 200ms;
-}
-
-
-
 
 .category-icon{
     width: 120px;
