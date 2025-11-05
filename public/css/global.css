@@ -12,7 +12,6 @@ body{
     position: relative;
 }
 .site-main{
-    padding-top: 100px;
     padding-bottom: 501px;
 }
 .container{
@@ -28,11 +27,12 @@ body{
     font-weight: 600;
     font-size: 32px;
     color: #1e1e1e;
+    margin-bottom: 1rem;
 }
 
 /* HEADER */
 header{
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100vw;
     z-index: 10;
@@ -43,7 +43,7 @@ header{
     justify-content: space-around;
     max-height: 100px;
     padding: 30px;
-    background-color: #fff;
+    background-color: transparent;
 }
 .menu-nav{
     display: flex;
@@ -55,6 +55,7 @@ header{
     font-weight: 600;
     align-items: center;
     gap: 6px;
+    color: #fff;
 }
 .menu-tab:hover{
     color: #007bff;
@@ -81,10 +82,11 @@ header{
 .first-level:hover svg{
     transform: rotate(-90deg);
     transition: transform 0.3s ease;
-    fill: #007bff;
+    color: #007bff;
 }
 .first-level svg{
     transition: transform 0.3s ease;
+    color: #fff;
 }
 .menu-subitem:hover{
     color: #007bff;
@@ -94,14 +96,16 @@ header{
     font-size: 16px;
     color: #333;
     padding: 4px 0;
+    text-wrap: nowrap;
 }
 .user-info{
     flex-direction: row;
+    position: relative;
 }
 .second-level-user{
     display: none;
     position: absolute;
-    top: 78%;
+    top: 100%;
     left: auto;
     background-color: #fff;
     padding: 10px 20px;
@@ -110,8 +114,9 @@ header{
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     z-index: 100;
     text-align: left;
+    width: fit-content;
 }
-.user-btn:hover .second-level-user{
+.user-info:hover .second-level-user{
     display: block !important;
 }
 .user-btn{
@@ -131,6 +136,7 @@ header{
 .user-name-header{
     font-size: 16px;
     font-weight: 600;
+    color: #fff;
 }
 .user-tag-header{
     font-size: 12px;
@@ -140,6 +146,7 @@ header{
 }
 .cart{
     position: relative;
+    color: #fff;
 }
 .cart-number{
     background-color: #007bff;
@@ -148,6 +155,7 @@ header{
     position: absolute;
     top: -10px;
     right: -10px;
+    color: #fff;
     font-size: 12px;
 }
 .search-bar{
@@ -161,15 +169,19 @@ header{
     border: none;
     box-shadow: none;
     outline: none;
-    padding: 8px;
+    padding: 0;
     border-radius: 10px;
     will-change: width;
     transition: all 0.5s ease;
+}
+.button-search svg{
+    color: #fff;
 }
 .search-bar:hover input,
 .search-bar input:focus{
     width: 400px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    padding: 8px;
     transition: all 0.5s ease;
 }
 .search-bar button{
@@ -283,9 +295,16 @@ footer{
 }
 .banner-home .swiper{
     overflow: visible !important;
+
+    img{
+        width: 100%;
+        filter: brightness(60%);
+    }
 }
 .banner-home .item{
     position: relative;
+    max-height: 90vh;
+    overflow: hidden;
 }
 .banner-home .item .info{
     width: 100%;
@@ -298,6 +317,10 @@ footer{
     transform: translateY(50px);
     opacity: 0;
     transition: all 0.5s ease;
+    color: #007bff;
+}
+.data svg, .hora svg{
+    color: #007bff;
 }
 .banner-home .swiper-slide  .item .info h2{
     font-size: 72px;
@@ -358,7 +381,7 @@ footer{
     padding: 30px;
 }
 .section-title{
-    font-size: 32px;
+    font-size: 62px;
     font-weight: 500;
 }
 
@@ -368,6 +391,13 @@ footer{
 .showcase{
     margin: 4rem 0;
     padding: 16px;
+}
+
+.showcase.bg-on{
+    background-image: url('../assets/img/bg-showcase.png');
+    background-position: center;
+    background-size: cover;
+    padding: 16rem 0;
 }
 
 .showcase-name{
@@ -448,22 +478,22 @@ footer{
     overflow: hidden;
     background-color: #f1f1f1;
 }
-.product .space-image{
+.space-image{
     width: 100%;
     height: 30%;
 }
-.product .space-image img{
+.space-image img{
     width: 100%;
     height: auto;
 }
-.product .product-info{
+.product-info{
     width: 100%;
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.product .product-name{
+.product-name{
     font-weight: 500;
     font-size: 20px;
     text-overflow: ellipsis;
@@ -471,22 +501,21 @@ footer{
     max-width: 100%;
 }
 
-.product .vendedor-image{
+.vendedor-image{
     width: 40px;
     border-radius: 100px;
 }
-
-.product .vendedor-image img{
+.vendedor-image img{
     width: 100%;
 }
 
-.product .vendedor-text{
+.vendedor-text{
     font-weight: 600;
     font-size: 12px;
     color: #0377ff;
 }
 
-.product .vendedor-info{
+.vendedor-info{
     width: 100%;
     display: flex;
     align-items: center;
@@ -494,25 +523,25 @@ footer{
     padding: 4px 0;
 }
 
-.product .vendedor-name span{
+.vendedor-name span{
     font-size: 12px;
     font-weight: 600;
     color: #1e1e1e;
 }
-.product .vendedor-name p{
+.vendedor-name p{
     font-size: 10px;
     font-weight: 600;
     color: #0377ff;
 }
 
-.product .tags{
+.tags{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: start;
     gap: 4px;
 }
-.product .tags .tag{
+.tags .tag{
     padding: 6px;
     border-radius: 50px;
     font-size: 10px;
@@ -525,20 +554,20 @@ footer{
     justify-content: space-between;
 }
 
-.product .product-price{
+.product-price{
     font-weight: 400;
     font-size: 24px;
     color: #1e1e1e;
 }
-.product .actions{
+.actions{
     display: flex;
     align-items: center;
 }
-.product .actions .fav{
+.actions .fav{
     width: 30px;
     height: 30px;
 }
-.product .btn-buy-card{
+.btn-buy-card{
     background-color: #0377ff;
     width: 40px;
     height: 40px;
@@ -612,12 +641,6 @@ footer{
 
 /* Página do Usuário */
 
-
-.user-welcome{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 .presentation{
     display: flex;
     align-items: end;
@@ -627,22 +650,41 @@ footer{
 }
 .presentation h1{
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 600;
 }
-.presentation .add-btn{
+.presentation h1 b{
+    color: #0377ff;
+}
+.presentation #addProduct{
     background-color: #007bff;
     padding: 12px 24px !important;
     color: white;
     font-size: 20px;
     height: 68px;
+    border-radius: 12px;
 }
 .presentation .usuario-nome{
     color: #007bff;
 }
-.presentation .welcome-frase{
-    color: grey;
-    font-weight: 500;
-    font-size: 20px;
+
+.products{
+    margin: 2rem 0;
+    padding: 20px;
+}
+
+.list-product{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.list-product .item{
+    max-width: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: solid 1px;
 }
 
 .my-products{
@@ -670,16 +712,13 @@ footer{
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
     top: 0;
     left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .overlay.show {
     opacity: 1;
@@ -688,14 +727,28 @@ footer{
 
 .modal-product{
     width: 500px;
-    height: fit-content;
     display: flex;
     flex-direction: column;
     padding: 12px 16px;
     background-color: white;
-    height: 90%;
     border-radius: 24px;
     padding: 30px;
+    position: absolute;
+    overflow: auto;
+    top: 50px;
+    margin: 0 35%;
+    z-index: 60;
+}
+.modal-product .modal-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+.modal-product label{
+    margin-bottom: 0px;
+    font-weight: 500;
+    font-size: 20px;
 }
 .modal-product h2{
     font-weight: 600;
@@ -707,13 +760,8 @@ footer{
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
-    height: 100%;
-}
-.modal-product div{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: 100%;
+    gap: 8px;
+    overflow: auto;
 }
 .modal-product input{
     background-color: #f1f1f1;
@@ -721,6 +769,29 @@ footer{
     padding: 10px;
     border-radius: 12px;
     font-size: 14px;
+    margin-bottom: 10px;
+}
+.modal-product textarea{
+    height: 200px;
+    background-color: #f1f1f1;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.modal-content .box-upload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    border: dashed 1px #999999;
+    border-radius: 12px;
+}
+.modal-content .box-upload input{
+    width: fit-content !important;
+    margin: 0 !important;
 }
 .modal-product select{
     width: 100%;
@@ -791,6 +862,37 @@ footer{
     color: #007bff;
     font-weight: 600;
 }
+
+.login-text{
+    h1{
+        font-size: 36px;
+        font-weight: 600;
+        color: #000000;
+    }
+
+    p{
+        font-size: 16px;
+        font-weight: 500;
+        color: #a7a7a7;
+    }
+}
+
+.alerta-erro{
+    max-height: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+    border: rgb(185, 38, 38);
+    background-color: rgb(255, 198, 198);
+    color: rgb(185, 38, 38);
+    transition: max-height 0.3s ease;
+}
+.alerta-erro.show{
+    max-height: 100px;
+    transition: max-height 0.3s ease;
+}
 .login{
     display: flex;
     flex-direction: column;
@@ -807,13 +909,23 @@ footer{
     background-color: #e4e4e4;
     border-radius: 20px;
 }
+.login .campo input{
+    padding: .5rem;
+    outline: none !important;
+    border: none !important;
+}
 .relative {
     position: relative;
 }
-.img-balanco{
-    position: absolute;
-    top: 0;
-    left: 0;
+.image-login-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.img-login{
+    width: 100%;
+    height: auto;
 }
 .text-slogan{
     font-weight: 700;
@@ -830,6 +942,7 @@ footer{
     align-items: center;
     justify-content: center;
     margin-right: 12rem;
+    gap: 2rem;
 }
 
 .aba{
@@ -853,6 +966,7 @@ footer{
 
 .campo{
     width: 100%;
+    margin-bottom: 10px;
 }
 .campo input:focus{
     border: none;
@@ -876,6 +990,7 @@ footer{
     font-size: 16px;
     padding: 6px;
     background-color: transparent;
+    width: 130px;
 }
 .select-form button.active{
     border-bottom: 2px solid #007bff;

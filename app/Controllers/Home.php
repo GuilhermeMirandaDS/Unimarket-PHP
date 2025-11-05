@@ -28,6 +28,8 @@ class Home extends BaseController
         $imageModel = new ProductImages();
         $categoryModel = new Category();
 
+        $allCategories = $categoryModel->findAll();
+
         if ($categoryId1) {
             $prodShow1 = $productModel->where('categoria', $categoryId1)->findAll();
             foreach ($prodShow1 as $item){
@@ -54,7 +56,8 @@ class Home extends BaseController
             'prodShow1' => $prodShow1,
             'category1' => $category1,
             'prodShow2' => $prodShow2,
-            'category2' => $category2
+            'category2' => $category2,
+            'categories' => $allCategories
         ]);
     }
 
@@ -66,6 +69,9 @@ class Home extends BaseController
 
         $agent = $this->request->getUserAgent();
 
+        $categoryModel = new Category();
+
+        $allCategories = $categoryModel->findAll();
 
         $productModel = new Product();
         $userModel = new User();
@@ -77,7 +83,8 @@ class Home extends BaseController
         return view('myproducts', [
             'isMobile' => $agent->isMobile(),
             'user' => $user,
-            'products' => $products
+            'products' => $products,
+            'categories' => $allCategories
         ]);
     }
 

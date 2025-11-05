@@ -37,29 +37,31 @@ class UserController extends BaseController
         $ra = $this->request->getPost('ra');
         $password = $this->request->getPost('password');
 
-        log_message('debug', 'RA: '.$ra);
-        log_message('debug', 'Password: '.$password);
-
         $user = $this->User->where('ra', $ra)->first();
 
         if ($user && password_verify($password, $user->password)){
 
-            log_message('error', 'Senha inválida para RA: '.$ra);
-
             session()->set([
                 'ra' => $user->ra,
-                'user_name' => $user->name,
+                'name' => $user->name,
+                'tag' => $user->tag,
                 'logged_in' => true
             ]);
 
             return redirect()->to(base_url('/home'));
 
         } else {
-            log_message('error', 'Usuário não encontrado para RA: '.$ra);
-            return redirect()->back()->with('error', 'RA ou senha inválidos');
+            return redirect()->to(base_url('/enter'))->with('error', 'RA ou senha inválidos');
         }
 
         
+    }
+
+    public function logOut()
+    {
+        session()->remove('logged_in');
+
+        return redirect()->to(base_url('/enter'));
     }
 
     public function register()

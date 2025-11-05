@@ -23,4 +23,5 @@ jQuery(document).ready(function(){
             spaceBetween: 10
         })
     };
+    
 })

@@ -11,26 +11,26 @@
     <div class="flex align-center content">
         
         <!-- Painel esquerdo -->
-        <div class="hidden md:block md:w-1/2 relative">
-            <div class="h-full flex items-center justify-center p-12">
-                <div class="text-center">
-                    <div class="mb-6">
-                        <img src="<?= base_url('assets/img/balanco.svg') ?>" class="img-balanco" />
-                    </div>
-                    <h1 class="text-slogan">
-                        Faça login para navegar pelo 
-                        <span class="text-blue-600">Unimarket</span>
-                    </h1>
-                </div>
-            </div>
+        <div class="hidden md:block md:w-1/2 relative image-login-container">
+            <img src="<?= base_url('assets/img/banner-login.png') ?>" class="img-login" />
         </div>
 
         <!-- Painel direito -->
         <div class="form-login">
+            <div class="login-text">
+                <h1>Bem-vindo(a) de volta! 👋</h1>
+                <p>Insira seus dados para realizar seu login</p>
+            </div>
             <div class="select-form">
                 <button class="select-login active">Login</button>
                 <button class="select-register">Cadastrar-se</button>
             </div>
+
+            <?php if (session()->getFlashData('error')): ?>
+                <div class="alert alert-danger">
+                    <?= session()->getFlashData('error') ?>
+                </div>
+            <?php endif; ?>
 
             <form method="post" action="<?= base_url('users/login') ?>" class="login aba show" id="loginForm">
                 <!-- Login -->
@@ -109,27 +109,6 @@
         document.querySelector('.register.aba').classList.remove('show');
         document.querySelector('.login.aba').classList.add('show');
     })
-
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-
-        e.preventDefault();
-
-        const formData = new FormData(this);
-
-        fetch(this.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.redirected) {
-                sessionStorage.setItem('logged_in', 'true');
-                window.location.href = response.url;
-            } else {
-                alert('Login inválido');
-            }
-        });
-
-    });
 
     document.getElementById('registerForm').addEventListener('submit', function(e) {
 
