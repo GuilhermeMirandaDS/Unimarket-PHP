@@ -1,4 +1,4 @@
-<?= view('components/header.php') ?>
+<?= view('components/header.php', ['notTransp' => ' ']) ?>
 <div class="site-main">
 
     <div class="banner-home">

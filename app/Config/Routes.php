@@ -7,11 +7,19 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::first');
 $routes->get('home', 'Home::index');
-$routes->get('logout', 'UserController::logOut');
 $routes->get('my-products/(:num)', 'Home::myproducts/$1');
+
+
+// Rotas dos usuários
 $routes->get('enter', 'UserController::enter'); // Para exibir a view
 $routes->post('users/login', 'UserController::login'); // Para processar o login
 $routes->post('users/register', 'UserController::register'); // Para processar o register
+$routes->get('logout', 'UserController::logOut');
 
-// Link dos produtos
+// Rotas dos produtos
 $routes->get('product/(:num)', 'ProductController::productInfo/$1');
+$routes->get('products', 'ProductController::search');
+
+
+// Rotas das categorias
+$routes->get('category/(:num)', 'CategoryController::search/$1');

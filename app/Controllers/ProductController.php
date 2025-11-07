@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Category;
 use App\Models\ProductImages;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -40,6 +41,52 @@ class ProductController extends BaseController
 
         // Renderiza o componente passando o produto
         return view('components/product', ['product' => $product, 'image' => $image, 'user' => $user]);
+    }
+
+    public function search()
+    {
+        $query = $this->request->getVar('query'); 
+
+        $agent = $this->request->getUserAgent();
+        $catModel = new Category();
+        $userModel = new User();
+        $categories = $catModel->findAll();
+
+        if (!$query) {
+            return view('notFind', [
+                'categories' => $categories,
+                'isMobile' => $agent->isMobile()
+            ]);
+        }
+
+        $productModel = new Product();
+        $imageModel = new ProductImages();
+
+        $products = $productModel->like('nome', $query, 'both')->orLike('tags', $query, 'both')->findAll();
+
+        if (count($products) > 0) {
+            foreach ($products as $item) {
+                $item->image = $imageModel->where('product_id', $item->id)->findAll();
+                $item->vendedor =  $userModel->where('ra', $item->vendedor)->first();
+            }
+
+            return view('catalog', [
+                'products' => $products,
+                'query' => $query,
+                'categories' => $categories,
+                'isMobile' => $agent->isMobile()
+            ]);
+
+        } else {
+
+            return view('notFind', [
+                'categories' => $categories,
+                'isMobile' => $agent->isMobile()
+            ]);
+
+        }
+        
+        
     }
 }
 

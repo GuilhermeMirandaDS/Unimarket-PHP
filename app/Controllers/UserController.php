@@ -45,7 +45,7 @@ class UserController extends BaseController
                 'ra' => $user->ra,
                 'name' => $user->name,
                 'tag' => $user->tag,
-                'logged_in' => true
+                'logged_in' => true,
             ]);
 
             return redirect()->to(base_url('/home'));
