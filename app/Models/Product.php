@@ -20,13 +20,14 @@ class Product extends Model
         'estoque',
         'vendedor',
         'tags',
-        'created_at'
+        'created_at',
+        'images'
     ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
-    protected array $casts = [];
+    protected array $casts = ['images' => 'json'];
     protected array $castHandlers = [];
 
     // Dates

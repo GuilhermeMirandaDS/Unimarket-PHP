@@ -31,6 +31,10 @@ class CreateProductsTable extends Migration
                 'unsigned' => true,
                 'null' => false,
             ],
+            'images' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
             'preco' => [
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',

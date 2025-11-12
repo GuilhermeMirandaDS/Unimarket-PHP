@@ -4,16 +4,19 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Category extends Model
+class Events extends Model
 {
-    protected $table            = 'categories';
+    protected $table            = 'events';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
 
     protected $allowedFields    = [
-        'nome'
+        'nome',
+        'data',
+        'imagem',
+        'descricao'
     ];
 
     protected $useTimestamps = false;

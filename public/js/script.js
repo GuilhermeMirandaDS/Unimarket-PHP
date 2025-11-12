@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
             },
             slidesPerView: 1,
             centeredSlides: true,
-            spaceBetween: 10
+            spaceBetween: 0
         })
     };
 
@@ -23,5 +23,25 @@ jQuery(document).ready(function(){
             spaceBetween: 10
         })
     };
+
+    $('#addProduct').on('click', function(){
+        $('.overlay').addClass('show');
+        $('.modal-product').addClass('show');
+    });
+
+    function closeModal(){
+        if($('.modal-product.show')){
+            $('.overlay').removeClass('show');
+            $('.modal-product').removeClass('show');
+        }
+    };
+
+    $('#closeModal').on('click', function(){
+        closeModal();
+    });
+
+    $('.overlay').on('click', function(){
+        closeModal();
+    });
     
 })

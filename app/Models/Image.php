@@ -4,16 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Category extends Model
+class Image extends Model
 {
-    protected $table            = 'categories';
+    protected $table            = 'images';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
 
     protected $allowedFields    = [
-        'nome'
+        'name',
+        'path'
     ];
 
     protected $useTimestamps = false;

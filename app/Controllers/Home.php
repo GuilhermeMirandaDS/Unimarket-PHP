@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
-use App\Models\ProductImages;
+use App\Models\Image;
 use App\Models\Category;
 
 class Home extends BaseController
@@ -25,7 +25,7 @@ class Home extends BaseController
 
         $productModel = new Product();
         $userModel = new User();
-        $imageModel = new ProductImages();
+        $imageModel = new Image();
         $categoryModel = new Category();
 
         $allCategories = $categoryModel->findAll();
@@ -34,7 +34,9 @@ class Home extends BaseController
             $prodShow1 = $productModel->where('categoria', $categoryId1)->findAll();
             foreach ($prodShow1 as $item){
                 $item->vendedor = $userModel->where('ra', $item->vendedor)->first();
-                $item->linked = $imageModel->where('product_id', $item->id)->findAll();
+                foreach ($img as $item->images){
+                    $item->imageList = $imageModel->where('path', $item->images->path)->first();
+                }
             }
 
             $category1 = $categoryModel->where('id', $categoryId1)->first();
@@ -75,7 +77,7 @@ class Home extends BaseController
 
         $productModel = new Product();
         $userModel = new User();
-        $imageModel = new ProductImages();
+        $imageModel = new Image();
 
         $user = $userModel->where('ra', $ra)->first();
         $products = $productModel->where('vendedor', $ra)->findAll();

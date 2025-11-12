@@ -19,6 +19,7 @@ $routes->get('logout', 'UserController::logOut');
 // Rotas dos produtos
 $routes->get('product/(:num)', 'ProductController::productInfo/$1');
 $routes->get('products', 'ProductController::search');
+$routes->post('my-products/add', 'ProductController::add');
 
 
 // Rotas das categorias

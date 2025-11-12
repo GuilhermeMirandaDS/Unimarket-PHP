@@ -745,18 +745,30 @@ footer{
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 50;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transition: opacity 0.3s ease;
     top: 0;
     left: 0;
+    transition: all 0.3s ease;
 }
 .overlay.show {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
+    transition: all 0.3s ease;
 }
 
+.modal-product.show{
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+}
 .modal-product{
-    width: 500px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    width: 1000px;
     display: flex;
     flex-direction: column;
     padding: 12px 16px;
@@ -766,12 +778,12 @@ footer{
     position: absolute;
     overflow: auto;
     top: 50px;
-    margin: 0 35%;
+    margin: 0 25%;
     z-index: 60;
 }
 .modal-product .modal-title{
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     flex-wrap: nowrap;
 }
@@ -785,14 +797,6 @@ footer{
     font-size: 36px;
     width: 100%;
 }
-.modal-product form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    gap: 8px;
-    overflow: auto;
-}
 .modal-product input{
     background-color: #f1f1f1;
     width: 100%;
@@ -802,7 +806,7 @@ footer{
     margin-bottom: 10px;
 }
 .modal-product textarea{
-    height: 200px;
+    height: 100px;
     background-color: #f1f1f1;
     width: 100%;
     padding: 10px;
@@ -836,7 +840,48 @@ footer{
     width: 100%;
     border-radius: 12px;
 }
+.modal-content .add-product{
+    display: flex;
+    align-items: start;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 500px;
+    gap: 8px;
+}
+.modal-content .add-product > div{
+    max-width: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+.modal-content #productSubmit{
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
 
+.aviso-fotos{
+    border: solid 2px #E43235;
+    color: #E43235;
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+}
 
 
 /* user info page */
@@ -939,7 +984,7 @@ footer{
     background-color: #e4e4e4;
     border-radius: 20px;
 }
-.login .campo input{
+.campo input, .campo textarea{
     padding: .5rem;
     outline: none !important;
     border: none !important;
