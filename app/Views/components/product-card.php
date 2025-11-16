@@ -1,8 +1,22 @@
 <div class="product">
     <div class="space-image">
         <a href="<?= base_url('/products/' . $product->id) ?>">
-            <img src="<?= base_url('assets/img/no-image.png') ?>">
-            <!-- esc($product->linked->image) ?? base_url('assets/img/no-image.png') -->
+            <?php 
+                // Assumindo que $product é o objeto/array do produto carregado
+                $image_names = $product->images; 
+                $base_url_images = base_url('uploads/products/'); // URL base para as imagens
+            ?>
+            <?php foreach ($image_names as $key=>$image_name): ?>
+
+                <?php if($key == 0): ?>
+
+                    <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-600.webp'; ?>
+
+                    <img src="<?= $image_url ?>">
+                        
+                <?php endif; ?>
+
+            <?php endforeach; ?>
         </a>
     </div>
 
@@ -16,7 +30,20 @@
             
             <div class="vendedor-info">
                 <div class="vendedor-image">
-                    <img src="<?= esc($product->vendedor->image) ?? base_url('assets/img/no-image.png') ?>">
+                    <?php if(session()->get('image')): ?>
+
+                        <?php
+                            $image_name = session()->get('image')[0]; 
+                            $base_url_images = base_url('uploads/users/');
+                        ?>
+
+                        <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-128.webp'; ?>
+
+                        <img src="<?= $image_url ?>" alt="userPFP" class="user-pfp"/>
+
+                    <?php else: ?>
+                        <img src="<?php base_url('/assets/img/no-image.png') ?>" alt="userPFP" class="user-pfp"/>
+                    <?php endif; ?>
                 </div>
                 <div class="vendedor-name">
                     <span><?= esc($product->vendedor->name) ?></span>

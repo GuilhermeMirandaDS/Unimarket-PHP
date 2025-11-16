@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
-use App\Models\ProductImages;
 use App\Models\Category;
 
 class CategoryController extends BaseController

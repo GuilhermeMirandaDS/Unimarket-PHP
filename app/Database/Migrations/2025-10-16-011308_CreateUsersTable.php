@@ -31,9 +31,8 @@ class CreateUsersTable extends Migration
                 'type' => 'INT',
                 'null' => false,
             ],
-            'image' => [
-                'type' => 'VARCHAR',
-                'constraint' => '1000',
+            'images' => [
+                'type' => 'TEXT',
                 'null' => true,
             ],
             'created_at' => [

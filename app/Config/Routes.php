@@ -20,6 +20,7 @@ $routes->get('logout', 'UserController::logOut');
 $routes->get('product/(:num)', 'ProductController::productInfo/$1');
 $routes->get('products', 'ProductController::search');
 $routes->post('my-products/add', 'ProductController::add');
+$routes->delete('products/remove/(:num)', 'ProductController::delete/$1');
 
 
 // Rotas das categorias

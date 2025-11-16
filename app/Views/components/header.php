@@ -55,7 +55,21 @@
             <?php
                 } else { 
             ?>
-                <img src="" alt="userPFP" class="user-pfp"/>
+                <?php if(session()->get('image')): ?>
+
+                    <?php 
+                        // Assumindo que $product é o objeto/array do produto carregado
+                        $image_name = session()->get('image')[0]; 
+                        $base_url_images = base_url('uploads/users/'); // URL base para as imagens
+                    ?>
+
+                    <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-128.webp'; ?>
+
+                    <img src="<?= $image_url ?>" alt="userPFP" class="user-pfp"/>
+
+                <?php else: ?>
+                    <img src="<?php base_url('/assets/img/no-image.png') ?>" alt="userPFP" class="user-pfp"/>
+                <?php endif; ?>
 
                 <div class="user-info-header">
                     <span class="user-name-header"><?= esc(session()->get('name')) ?></span>
