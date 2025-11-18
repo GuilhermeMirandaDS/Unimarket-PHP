@@ -19,6 +19,10 @@ class CreateCategoriesTable extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 100,
                 'null' => false,
+            ],
+            'image' => [
+                'type' => 'TEXT',
+                'null' => false,
             ]
         ]);
 

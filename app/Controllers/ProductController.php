@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Avaliacao;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class ProductController extends BaseController
@@ -21,7 +22,7 @@ class ProductController extends BaseController
 
         if (!$data) {
 
-            session()->setFlashdata('error', 'Erro ao adicionado produto!');
+            session()->setFlashdata('error', 'Erro ao adicionar produto!');
             
             return $this->response->setJSON([
                 'status' => 'error',
@@ -103,11 +104,52 @@ class ProductController extends BaseController
             $user->images = base_url('/assets/img/no-image.png');
         }
 
+        $avalModel = new Avaliacao();
+        $feedbackConfirmed = $avalModel->where('user', $user->ra)->first();
+        $avaliacoes = $avalModel->where('product', $product->id)->findAll();
+
+        foreach ($avaliacoes as $key => $item) {
+            $item->user = $userModel->where('ra', $item->user)->first();
+        }
+
+        $categoryModel = new Category();
+        $allCategories = $categoryModel->findAll();
+        $agent = $this->request->getUserAgent();
+
         // Renderiza o componente passando o produto
-        return view('components/product', [
+        return view('product', [
             'product' => $product,
-            'user' => $user
+            'user' => $user,
+            'feedbackConfirmed' => $feedbackConfirmed,
+            'avaliacoes' => $avaliacoes,
+            'categories' => $allCategories,
+            'isMobile' => $agent->isMobile()
         ]);
+    }
+
+    public function avaliar()
+    {
+        $data = $this->request->getPost();
+
+        if (!$data) {
+
+            session()->setFlashdata('error', 'Erro ao adicionar avaliação!');
+            
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Dados inválidos'
+            ])->setStatusCode(ResponseInterface::HTTP_BAD_REQUEST);
+        }
+
+        $prodId = $data['product'];
+
+        $avalModel = new Avaliacao();
+
+        $avalModel->insert($data);
+
+        session()->setFlashdata('success', 'Avaliação adicionada com sucesso!');
+
+        return redirect()->to(base_url('/products/' . $prodId));
     }
 
     public function search(){

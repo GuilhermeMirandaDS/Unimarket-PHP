@@ -24,10 +24,9 @@ class CreateEventTable extends Migration
                 'type' => 'DATETIME',
                 'null' => false
             ],
-            'imagem' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
+            'images' => [
+                'type' => 'TEXT',
+                'null' => false,
             ],
             'descricao' => [
                 'type' => 'VARCHAR',

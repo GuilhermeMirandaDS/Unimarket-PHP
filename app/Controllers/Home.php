@@ -16,9 +16,6 @@ class Home extends BaseController
 
         $agent = $this->request->getUserAgent();
 
-        $categoryId1 = getCategoryId(1);
-        $categoryId2 = getCategoryId(2);
-
         $prodShow1 = [];
         $prodShow2 = [];
 
@@ -27,6 +24,14 @@ class Home extends BaseController
         $categoryModel = new Category();
 
         $allCategories = $categoryModel->findAll();
+
+        foreach ($allCategories as $key => $item) {
+            if ($key == 0) {
+                $categoryId1 = $item->id;
+            } elseif ($key == 1) {
+                $categoryId2 = $item->id;
+            }
+        }
 
         if ($categoryId1) {
             $prodShow1 = $productModel->where('categoria', $categoryId1)->findAll();

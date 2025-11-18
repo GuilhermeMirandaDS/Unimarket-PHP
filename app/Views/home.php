@@ -52,9 +52,35 @@
         </div>
     </div>
 
+    <div class="categories-carousel">
+        <div class="container">
+            <div class="categories-swiper swiper">
+                <div class="swiper-wrapper">
+                    <?php foreach($categories as $categorie): ?>
+                        <div class="swiper-slide bg-sun">
+                            <a href="<?= base_url('/products?query=' . $categorie->nome) ?>">
+                                <?php if ($categorie->image): ?>
+                                    <?php
+                                        $base_url_images = base_url('uploads/categories/');
+                                        $catImage = $base_url_images . pathinfo($categorie->image, PATHINFO_FILENAME) . '-128.webp';
+                                    ?>
+                                    <div class="cat-image">
+                                        <img src="<?= $catImage ?>" alt="<?= esc($categorie->nome) ?>">
+                                    </div>
+                                <?php endif ?>
+                                
+                                <?= esc($categorie->nome) ?>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="showcase bg-on">
         <div class="container">
-            <div class="showcase-name section-title"><?= esc($category1->nome) ?></div>
+            <div class="showcase-name bg-blue section-title"><?= esc($category1->nome) ?></div>
             <div class="products-swiper swiper">
                 <div class="swiper-wrapper">
                     <?php foreach ($prodShow1 as $item): ?>

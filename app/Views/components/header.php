@@ -24,11 +24,13 @@
                     Produtos
                     <svg width="20px" height="20px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><g id="Shopicon"><polygon points="24,29.172 9.414,14.586 6.586,17.414 24,34.828 41.414,17.414 38.586,14.586 	" fill="currentColor"/></g></svg>
                     <ul class="second-level">
-                        <?php foreach($categories as $categorie): ?>
-                            <li class="menu-subitem">
-                                <a href="<?= base_url('/category/' . $categorie->id) ?>"><?= esc($categorie->nome) ?></a>
-                            </li>
-                        <?php endforeach; ?>
+                        <?php if ($categories != null): ?>
+                            <?php foreach($categories as $categorie): ?>
+                                <li class="menu-subitem">
+                                    <a href="<?= base_url('/category/' . $categorie->id) ?>"><?= esc($categorie->nome) ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
                 <a class="menu-tab" href="/">Sobre a Unimar</a>
@@ -42,30 +44,18 @@
             </form>
 
             <div class="flex items-center gap-3 user-info">
-            <?php 
-            
-                $userLogged = session()->get('logged_in');
-                
-                if (!$userLogged) { 
-            
-            ?>
-                <a href="<?php base_url('/enter') ?>">
-                    <span class="sr-only">Login</span>
-                </a>
-            <?php
-                } else { 
-            ?>
                 <?php if(session()->get('image')): ?>
 
                     <?php 
-                        // Assumindo que $product é o objeto/array do produto carregado
                         $image_name = session()->get('image')[0]; 
-                        $base_url_images = base_url('uploads/users/'); // URL base para as imagens
+                        $base_url_images = base_url('uploads/users/');
                     ?>
 
                     <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-128.webp'; ?>
 
-                    <img src="<?= $image_url ?>" alt="userPFP" class="user-pfp"/>
+                    <div class="user-pfp">
+                        <img src="<?= $image_url ?>" alt="userPFP"/>
+                    </div>
 
                 <?php else: ?>
                     <img src="<?php base_url('/assets/img/no-image.png') ?>" alt="userPFP" class="user-pfp"/>
@@ -94,13 +84,15 @@
                     <li class="menu-subitem">
                         <a href="<?= base_url('/my-products/' . session()->get('ra')) ?>">Meus Anúncios</a>
                     </li>
+                    <?php if (session()->get('adm') == 1): ?>
+                    <li class="menu-subitem">
+                        <a href="<?= base_url('/users/' . session()->get('ra') . '/admin') ?>">Painel ADM</a>
+                    </li>
+                    <?php endif; ?>
                     <li class="menu-subitem">
                         <a href="<?= base_url('/logout') ?>" >Sair</a>
                     </li>
                 </ul>
-            <?php
-                }
-            ?>
             </div>
 
             <a href="" class="cart">

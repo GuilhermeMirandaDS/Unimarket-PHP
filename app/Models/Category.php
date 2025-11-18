@@ -13,8 +13,10 @@ class Category extends Model
     protected $useSoftDeletes   = false;
 
     protected $allowedFields    = [
-        'nome'
+        'nome',
+        'image'
     ];
 
     protected $useTimestamps = false;
+    protected array $casts = ['images' => 'json'];
 }

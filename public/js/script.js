@@ -7,6 +7,26 @@ $(document).ready(function(){
             $('.alerta-add').removeClass('show');
         }, 5000);
     }
+    
+    if ($('.categories-carousel .swiper-wrapper').length > 0) {
+
+        let slidesLen = $('.categories-carousel .swiper-slide').length;
+
+        let centered = false;
+
+        if(slidesLen < 2){
+            centered = true;
+        }
+
+        new Swiper('.categories-carousel .swiper', {
+            preloadImages: false,
+            loop: false,
+            effect: 'slide',
+            slidesPerView: slidesLen > 5 ? 5 : slidesLen,
+            centeredSlides: centered,
+            spaceBetween: 10
+        })
+    }
 
     if ($('.banner-home .swiper-slide'.length > 1)){
         new Swiper('.banner-home .swiper', {

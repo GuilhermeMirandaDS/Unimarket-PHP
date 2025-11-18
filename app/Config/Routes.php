@@ -15,13 +15,15 @@ $routes->get('enter', 'UserController::enter'); // Para exibir a view
 $routes->post('users/login', 'UserController::login'); // Para processar o login
 $routes->post('users/register', 'UserController::register'); // Para processar o register
 $routes->get('logout', 'UserController::logOut');
+$routes->get('users/(:num)/admin', 'UserController::admin/$1');// Verifica cargo do usuário e redireciona
 
 // Rotas dos produtos
-$routes->get('product/(:num)', 'ProductController::productInfo/$1');
+$routes->get('products/(:num)', 'ProductController::productInfo/$1');
 $routes->get('products', 'ProductController::search');
 $routes->post('my-products/add', 'ProductController::add');
 $routes->delete('products/remove/(:num)', 'ProductController::delete/$1');
+$routes->post('products/addFeedback', 'ProductController::avaliar');
 
 
 // Rotas das categorias
-$routes->get('category/(:num)', 'CategoryController::search/$1');
+$routes->post('category/add', 'CategoryController::add');

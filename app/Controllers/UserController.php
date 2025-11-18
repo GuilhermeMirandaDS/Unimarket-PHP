@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Category;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class UserController extends BaseController
@@ -44,6 +45,7 @@ class UserController extends BaseController
             session()->set([
                 'ra' => $user->ra,
                 'name' => $user->name,
+                'adm' => $user->admin,
                 'image' => $user->images,
                 'tag' => $user->tag,
                 'logged_in' => true,
@@ -162,6 +164,31 @@ class UserController extends BaseController
         return $this->response->setJSON([
             'status' => 'success',
             'message' => 'Usuário excluído com sucesso.'
+        ]);
+    }
+
+    public function admin($ra)
+    {
+        if(!$ra){
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Usuário não encontrado.'
+            ])->setStatusCode(ResponseInterface::HTTP_NOT_FOUND);
+        }
+
+        $user = $this->User->where('ra', $ra)->first();
+
+        $categoryModel = new Category();
+        $allCategories = $categoryModel->findAll();
+        $agent = $this->request->getUserAgent();
+
+        if ($user->admin != 1){
+            return redirect()->to('/home')->with('erro', 'Este usuário não é Administrador!');
+        }
+
+        return view('admin', [
+            'categories' => $allCategories,
+            'isMobile' => $agent->isMobile()
         ]);
     }
 }

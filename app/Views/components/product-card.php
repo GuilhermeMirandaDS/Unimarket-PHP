@@ -30,19 +30,19 @@
             
             <div class="vendedor-info">
                 <div class="vendedor-image">
-                    <?php if(session()->get('image')): ?>
+                    <?php if($product->vendedor->images[0]): ?>
 
                         <?php
-                            $image_name = session()->get('image')[0]; 
+                            $image_name = $product->vendedor->images[0]; 
                             $base_url_images = base_url('uploads/users/');
                         ?>
 
                         <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-128.webp'; ?>
 
-                        <img src="<?= $image_url ?>" alt="userPFP" class="user-pfp"/>
+                        <img src="<?= $image_url ?>" alt="userPFP"/>
 
                     <?php else: ?>
-                        <img src="<?php base_url('/assets/img/no-image.png') ?>" alt="userPFP" class="user-pfp"/>
+                        <img src="<?php base_url('/assets/img/no-image.png') ?>" alt="userPFP"/>
                     <?php endif; ?>
                 </div>
                 <div class="vendedor-name">

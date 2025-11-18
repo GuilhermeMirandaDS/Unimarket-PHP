@@ -15,9 +15,10 @@ class Events extends Model
     protected $allowedFields    = [
         'nome',
         'data',
-        'imagem',
+        'images',
         'descricao'
     ];
 
     protected $useTimestamps = false;
+    protected array $casts = ['images' => 'json'];
 }

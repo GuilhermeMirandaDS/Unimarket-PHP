@@ -132,6 +132,19 @@ header.not-transp{
     flex-direction: row;
     position: relative;
 }
+.user-pfp{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-pfp img{
+    width: 100%;
+    height: auto;
+}
 .second-level-user{
     display: none;
     position: absolute;
@@ -153,11 +166,6 @@ header.not-transp{
     width: 100px !important;
     height: 100%;
     margin-right: 20px;
-}
-.user-pfp{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
 }
 .user-info-header{
     display: flex;
@@ -435,6 +443,11 @@ footer{
 .showcase-name{
     margin-bottom: 20px;
     text-align: left;
+    font-size: 60px !important;
+}
+
+.bg-blue{
+    color: #fff;
 }
 
 .product-name{
@@ -536,7 +549,12 @@ footer{
 
 .vendedor-image{
     width: 40px;
+    height: 40px;
     border-radius: 100px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .vendedor-image img{
     width: 100%;
@@ -553,6 +571,7 @@ footer{
     display: flex;
     align-items: center;
     justify-content: start;
+    gap: 10px;
     padding: 4px 0;
 }
 
@@ -576,9 +595,17 @@ footer{
 }
 .tags .tag{
     padding: 6px;
-    border-radius: 50px;
+    border-radius: 10px;
     font-size: 10px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border: solid #007aff 1px;
+    color: #007aff;
+    transition: all 0.3s ease;
+}
+
+.tags .tag:hover{
+    background-color: #007aff;
+    color: #fff;
+    transition: all 0.3s ease;
 }
 
 .product-footer{
@@ -945,6 +972,22 @@ footer{
     margin-top: 10px;
 }
 
+.categories-carousel{
+    margin: 5rem 0;
+}
+
+.bg-sun{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-sun a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 /* user info page */
 .sidebar-profile{
@@ -1079,7 +1122,6 @@ footer{
     align-items: center;
     justify-content: center;
     margin-right: 12rem;
-    gap: 2rem;
 }
 
 .aba{
@@ -1174,4 +1216,36 @@ footer{
     opacity: 1;
     visibility: visible;
     transition: all 0.3s ease;
+}
+
+.form-container{
+    max-width: 20%;
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.form-container .campo{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 2rem;
+}
+.form-container input{
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 12px;
+    width: 100%;
+}
+
+#submitCategory{
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
 }

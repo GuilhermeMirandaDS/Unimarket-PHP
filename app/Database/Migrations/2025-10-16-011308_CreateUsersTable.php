@@ -35,6 +35,10 @@ class CreateUsersTable extends Migration
                 'type' => 'TEXT',
                 'null' => true,
             ],
+            'admin' => [
+                'type' => 'INT',
+                'null' => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
