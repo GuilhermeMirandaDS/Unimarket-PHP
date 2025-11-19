@@ -105,7 +105,7 @@ class ProductController extends BaseController
         }
 
         $avalModel = new Avaliacao();
-        $feedbackConfirmed = $avalModel->where('user', $user->ra)->first();
+        $feedbackConfirmed = $avalModel->where('user', $user->ra)->where('product', $product->id)->first();
         $avaliacoes = $avalModel->where('product', $product->id)->findAll();
 
         foreach ($avaliacoes as $key => $item) {

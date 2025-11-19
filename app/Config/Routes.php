@@ -27,3 +27,4 @@ $routes->post('products/addFeedback', 'ProductController::avaliar');
 
 // Rotas das categorias
 $routes->post('category/add', 'CategoryController::add');
+$routes->get('category/(:num)', 'CategoryController::get/$1');

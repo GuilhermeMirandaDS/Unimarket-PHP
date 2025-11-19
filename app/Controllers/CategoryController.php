@@ -15,6 +15,46 @@ class CategoryController extends BaseController
         $this->Category = new Category();
     }
 
+    public function get($id){
+        $prodModel = new Product();
+        $userModel = new User();
+        $catModel = new Category();
+        $categories = $catModel->findAll();
+        $agent = $this->request->getUserAgent();
+
+        $query = $catModel->where('id', $id)->first();
+
+        if (!$query) {
+            return view('notFind', [
+                'categories' => $categories,
+                'isMobile' => $agent->isMobile()
+            ]);
+        }
+
+        $products = $prodModel->where('categoria', $id)->findAll();
+
+        if (count($products) > 0) {
+            foreach ($products as $item) {
+                $item->vendedor =  $userModel->where('ra', $item->vendedor)->first();
+            }
+
+            return view('catalog', [
+                'products' => $products,
+                'query' => $query->nome,
+                'categories' => $categories,
+                'isMobile' => $agent->isMobile()
+            ]);
+
+        } else {
+
+            return view('notFind', [
+                'categories' => $categories,
+                'isMobile' => $agent->isMobile()
+            ]);
+
+        }
+    }
+
     public function add(){
 
         $data = $this->request->getPost();

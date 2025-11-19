@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Avaliacao;
 
 class Home extends BaseController
 {
@@ -80,11 +81,20 @@ class Home extends BaseController
         $user = $userModel->where('ra', $ra)->first();
         $products = $productModel->where('vendedor', $ra)->findAll();
 
+        $avalModel = new Avaliacao();
+        $avaliacoes = $avalModel->where('user', $ra)->findAll();
+        foreach ($avaliacoes as $key => $value) {
+            $value->user = $userModel->where('ra', $value->user)->first();
+        }
+        $feedbackConfirmed = true;
+
         return view('myproducts', [
             'isMobile' => $agent->isMobile(),
             'user' => $user,
             'products' => $products,
-            'categories' => $allCategories
+            'categories' => $allCategories,
+            'feedbackConfirmed' => $feedbackConfirmed,
+            'avaliacoes' => $avaliacoes
         ]);
     }
 

@@ -53,6 +53,60 @@ $(document).ready(function(){
         })
     };
 
+    if ($('.full-image-swiper .swiper-slide'.length > 1)){
+        new Swiper('.full-image-swiper.swiper', {
+            preloadImages: false,
+            loop: false,
+            effect: 'slide',
+            slidesPerView: 1,
+            spaceBetween: 0,
+            centeredSlides: true
+        })
+    };
+
+    if ($('.thumb-swiper .swiper-slide'.length > 1)){
+        new Swiper('.thumb-swiper.swiper', {
+            preloadImages: false,
+            loop: false,
+            effect: 'slide',
+            slidesPerView: 3.5,
+            spaceBetween: 10
+        })
+    };
+
+    
+
+    // Quantidade de produtos
+    const buttons = $('.box-quantidade button');
+    const input = $('.quant-input');
+    const stock = $('.estoque-input').val();
+
+    $.each(buttons, function(){
+        $(this).on('click', function(){
+            if($(this).attr('data-type') == 'menos'){
+                let val = input.val();
+
+                if(val <= 1){
+                    val = 1;
+                } else {
+                    val = +val - 1;
+                }
+                
+                input.val(val);
+            } else if($(this).attr('data-type') == 'mais'){
+                let val = input.val();
+
+                if (+val + 1 > stock) {
+                    return;
+                } else {
+                    val = +val + 1;
+                }
+
+                input.val(val);
+            }
+        })
+    })
+    // Fim da quantidade de produtos
     $('#addProduct').on('click', function(){
         $('.overlay').addClass('show');
         $('.modal-product').addClass('show');

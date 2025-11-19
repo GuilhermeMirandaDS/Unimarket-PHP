@@ -7,6 +7,9 @@
             <form action="<?= url_to('ProductController::avaliar') ?>" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="user" value="<?= session()->get('ra') ?>">
                 <input type="hidden" name="product" value="<?= $product->id ?>">
+
+                <h2>Adicionar avaliação</h2>
+
                 <div class="campo">
                     <label for="estrelas">Estrelas</label>
                     <select name="estrelas" id="estrelasSelect">
@@ -26,57 +29,55 @@
             </form>
         </div>
     <?php endif; ?>
-    <div class="avaliacoes-content swiper">
-        <div class="swiper-wrapper">
-            <?php foreach($avaliacoes as $item): ?>
-                <div class="swiper-slide comentario-item">
-                    <div class="avaliacoes-user">
-                        <?php if($item->user->images[0]): ?>
-    
-                            <?php
-                                $image_name = $item->user->images[0]; 
-                                $base_url_images = base_url('uploads/users/');
-                            ?>
+    <div class="avaliacoes-content">
+        <?php foreach($avaliacoes as $item): ?>
+            <div class="comentario-item">
+                <div class="avaliacoes-user">
+                    <?php if($item->user->images[0]): ?>
 
-                            <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-128.webp'; ?>
+                        <?php
+                            $image_name = $item->user->images[0]; 
+                            $base_url_images = base_url('uploads/users/');
+                        ?>
 
-                            <img src="<?= $image_url ?>" alt="userPFP"/>
+                        <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-128.webp'; ?>
 
-                        <?php else: ?>
-                            <img src="<?php base_url('/assets/img/no-image.png') ?>"/>
-                        <?php endif; ?>
-                        
-                        <div class="user-info">
-                            
-                            <h4 class="username"><?= $item->user->name ?></h4>
+                        <img src="<?= $image_url ?>" alt="userPFP"/>
 
-                            <?php
+                    <?php else: ?>
+                        <img src="<?php base_url('/assets/img/no-image.png') ?>"/>
+                    <?php endif; ?>
                     
-                                $tag = $item->user->tag;
+                    <div class="user-info">
+                        
+                        <h4 class="username"><?= $item->user->name ?></h4>
 
-                                if ($tag == 1){
-                                    $tag = 'Aluno';
-                                } elseif ($tag == 2) {
-                                    $tag = 'Funcionário';
-                                }
-                            
-                            ?>
-                            <p><?= esc($tag) ?></p>
-                        </div>
-                    </div>
-                    <div class="avaliacoes-text">
-                        <div class="stars">
-                            <?php for($i = 0; $i <= $item->estrelas; $i++): ?>
-                                <img src="<?= base_url('/assets/img/star.svg') ?>" alt="Star <?= $i ?>">
-                            <?php endfor; ?>
-                        </div>
+                        <?php
+                
+                            $tag = $item->user->tag;
 
-                        <div class="text">
-                            <p><?= $item->comentario ?></p>
-                        </div>
+                            if ($tag == 1){
+                                $tag = 'Aluno';
+                            } elseif ($tag == 2) {
+                                $tag = 'Funcionário';
+                            }
+                        
+                        ?>
+                        <p><?= esc($tag) ?></p>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
+                <div class="avaliacoes-text">
+                    <div class="stars">
+                        <?php for($i = 0; $i <= $item->estrelas; $i++): ?>
+                            <img src="<?= base_url('/assets/img/star.svg') ?>" alt="Star <?= $i ?>">
+                        <?php endfor; ?>
+                    </div>
+
+                    <div class="text">
+                        <p><?= $item->comentario ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>

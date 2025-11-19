@@ -70,7 +70,7 @@
             <div class="tags">
                 <?php for ($i=0; $i < sizeof($tagList); $i++): ?>
                     <a href="<?php echo base_url('/products?query=' . $tagList[$i]) ?>">
-                        <div class="tag"><?= $tagList[$i] ?></div>
+                        <div class="tag">#<?= $tagList[$i] ?></div>
                     </a>
                 <?php endfor; ?>
             </div>

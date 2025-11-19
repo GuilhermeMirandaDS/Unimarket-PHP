@@ -78,6 +78,10 @@
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <div class="container">
+            <?= view('components/avaliacoes.php') ?>
+        </div>
     </div>
 </div>
 
