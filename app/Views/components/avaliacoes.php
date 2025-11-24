@@ -33,7 +33,7 @@
         <?php foreach($avaliacoes as $item): ?>
             <div class="comentario-item">
                 <div class="avaliacoes-user">
-                    <?php if($item->user->images[0]): ?>
+                    <?php if(!empty($item->user->images[0])): ?>
 
                         <?php
                             $image_name = $item->user->images[0]; 
@@ -42,10 +42,14 @@
 
                         <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-128.webp'; ?>
 
-                        <img src="<?= $image_url ?>" alt="userPFP"/>
+                        <div class="avaliacao-image">
+                            <img src="<?= $image_url ?>" alt="userPFP"/>
+                        </div>
 
                     <?php else: ?>
-                        <img src="<?php base_url('/assets/img/no-image.png') ?>"/>
+                        <div class="avaliacao-image">
+                            <img src="<?= base_url('/assets/img/no-image.png') ?>"/>
+                        </div>
                     <?php endif; ?>
                     
                     <div class="user-info">
@@ -68,7 +72,7 @@
                 </div>
                 <div class="avaliacoes-text">
                     <div class="stars">
-                        <?php for($i = 0; $i <= $item->estrelas; $i++): ?>
+                        <?php for($i = 0; $i < $item->estrelas; $i++): ?>
                             <img src="<?= base_url('/assets/img/star.svg') ?>" alt="Star <?= $i ?>">
                         <?php endfor; ?>
                     </div>

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Curso;
 use App\Models\Avaliacao;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -89,6 +90,11 @@ class ProductController extends BaseController
     }
 
     public function productInfo($id){
+
+        if (!session()->get('logged_in')){
+            return redirect()->to(base_url('/enter'));
+        }
+
         $productModel = new Product();
         $product = $productModel->where('id', $id)->first();
         
@@ -99,13 +105,16 @@ class ProductController extends BaseController
         $userModel = new User();
         $user = $userModel->where('ra', $product->vendedor)->first();
 
+        $cursoModel = new Curso;
+        $user->curso = $cursoModel->where('id', $user->curso)->first();
+
         if (!$user) {
             $user->name = 'Usuário não encontrado';
             $user->images = base_url('/assets/img/no-image.png');
         }
 
         $avalModel = new Avaliacao();
-        $feedbackConfirmed = $avalModel->where('user', $user->ra)->where('product', $product->id)->first();
+        $feedbackConfirmed = $avalModel->where('user', session()->get('ra'))->where('product', $product->id)->first();
         $avaliacoes = $avalModel->where('product', $product->id)->findAll();
 
         foreach ($avaliacoes as $key => $item) {
@@ -116,6 +125,25 @@ class ProductController extends BaseController
         $allCategories = $categoryModel->findAll();
         $agent = $this->request->getUserAgent();
 
+        $productTags = explode(" ", $product->tags);
+
+        $productTags = array_filter($productTags);
+
+        $query = $productModel->where('id !=', $product->id);
+
+        $query = $query->groupStart();
+        $firstTag = true;
+        
+        foreach ($productTags as $tag) {
+            // Usamos orLike() para todas as tags
+            // O primeiro orLike() se comporta como um Like() normal dentro do groupStart()
+            $query = $query->orLike('tags', $tag, 'both');
+        }
+
+        $query = $query->groupEnd();
+
+        $relatedProducts = $query->limit(4)->findAll();
+
         // Renderiza o componente passando o produto
         return view('product', [
             'product' => $product,
@@ -123,7 +151,8 @@ class ProductController extends BaseController
             'feedbackConfirmed' => $feedbackConfirmed,
             'avaliacoes' => $avaliacoes,
             'categories' => $allCategories,
-            'isMobile' => $agent->isMobile()
+            'isMobile' => $agent->isMobile(),
+            'related' => $relatedProducts
         ]);
     }
 
@@ -153,6 +182,11 @@ class ProductController extends BaseController
     }
 
     public function search(){
+
+        if (!session()->get('logged_in')){
+            return redirect()->to(base_url('/enter'));
+        }
+
         $query = $this->request->getVar('query'); 
 
         $agent = $this->request->getUserAgent();
@@ -169,11 +203,22 @@ class ProductController extends BaseController
 
         $productModel = new Product();
 
-        $products = $productModel->like('nome', $query, 'both')->orLike('tags', $query, 'both')->findAll();
+        $category = $catModel->like('nome', $query, 'both')->first();
+
+        $products = $productModel->like('nome', $query, 'both')->orLike('tags', $query, 'both');
+
+        if ($category) {
+            $products = $products->orLike('categoria', $category->id, 'both')->findAll();
+        } else {
+            $products = $products->findAll();
+        }
+        
 
         if (count($products) > 0) {
             foreach ($products as $item) {
                 $item->vendedor =  $userModel->where('ra', $item->vendedor)->first();
+                $cursoModel = new Curso;
+                $item->vendedor->curso = $cursoModel->where('id', $item->vendedor->curso)->first();
             }
 
             return view('catalog', [
@@ -208,6 +253,9 @@ class ProductController extends BaseController
         }
 
         $productModel->delete(['id' => $id]);
+
+        $avalModel = new Avaliacao();
+        $avalModel->where('product', $id)->delete();
 
         session()->setFlashdata('success', 'Produto removido com sucesso!');
 

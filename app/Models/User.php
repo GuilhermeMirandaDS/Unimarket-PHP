@@ -18,6 +18,7 @@ class User extends Model
         'email',
         'password',
         'tag',
+        'curso',
         'images',
         'created_at',
         'updated_at'
@@ -26,7 +27,7 @@ class User extends Model
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
-    protected array $casts = ['images' => 'json'];
+    protected array $casts = ['images' => '?json'];
     protected array $castHandlers = [];
 
     // Dates

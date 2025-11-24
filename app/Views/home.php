@@ -78,34 +78,19 @@
         </div>
     </div>
 
-    <div class="showcase bg-on">
-        <div class="container">
-            <div class="showcase-name bg-blue section-title"><?= esc($category1->nome) ?></div>
-            <div class="products-swiper swiper">
-                <div class="swiper-wrapper">
-                    <?php foreach ($prodShow1 as $item): ?>
-                        <div class="swiper-slide">
-                            <?= view('components/product-card', ['product' => $item]) ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?= view('components/showcase', [
+        'bg' => 'bg-on',
+        'title' => 'Eletrônicos',
+        'category' => $category1,
+        'prodShow' => $prodShow1
+    ]) ?>
+    
 
-    <div class="showcase">
-        <div class="container">
-            <div class="showcase-name section-title"><?= esc($category2->nome) ?></div>
-            <div class="products-swiper swiper">
-                <div class="swiper-wrapper">
-                    <?php foreach ($prodShow2 as $item): ?>
-                        <div class="swiper-slide">
-                            <?= view('components/product-card', ['product' => $item]) ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?= view('components/showcase', [
+        'bg' => '',
+        'title' => 'Procurando um novo look?',
+        'category' => $category2,
+        'prodShow' => $prodShow2
+    ]) ?>
 </div>
 <?= view('components/footer.php') ?>

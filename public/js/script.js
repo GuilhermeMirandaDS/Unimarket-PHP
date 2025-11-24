@@ -1,4 +1,16 @@
 $(document).ready(function(){
+
+    // $('#registerForm select#tag').on('change', function(){
+    //     const val = $(this).val();
+
+    //     if (val == 1){
+    //         $('.options-funcionario').removeClass('show');
+    //         $('.options-aluno').addClass('show');
+    //     } else if(val == 2){
+    //         $('.options-aluno').removeClass('show');
+    //         $('.options-funcionario').addClass('show');
+    //     }
+    // });
     
     if ($('.alerta-add').length > 0) {
         $('.alerta-add').addClass('show');
@@ -22,13 +34,13 @@ $(document).ready(function(){
             preloadImages: false,
             loop: false,
             effect: 'slide',
-            slidesPerView: slidesLen > 5 ? 5 : slidesLen,
+            slidesPerView: slidesLen > 8 ? 8 : slidesLen,
             centeredSlides: centered,
             spaceBetween: 10
         })
     }
 
-    if ($('.banner-home .swiper-slide'.length > 1)){
+    if ($('.banner-home .swiper-slide').length > 1){
         new Swiper('.banner-home .swiper', {
             preloadImages: false,
             loop: true,
@@ -40,6 +52,24 @@ $(document).ready(function(){
             slidesPerView: 1,
             centeredSlides: true,
             spaceBetween: 0
+        })
+    };
+
+    if ($('.banner-eventos .swiper-slide').length > 1){
+
+        let swipLen = $('.banner-eventos .swiper-slide').length;
+
+        new Swiper('.banner-eventos .swiper', {
+            preloadImages: false,
+            loop: swipLen > 5 ? true : false,
+            effect: 'slide',
+            autoplay: {
+                delay: 5000,
+                pauseOnMouseEnter: true
+            },
+            slidesPerView: 1,
+            centeredSlides: true,
+            spaceBetween: 30
         })
     };
 
@@ -131,6 +161,7 @@ $(document).ready(function(){
     const $fileInput = $('#images');
     const $form = $('#uploadForm');
 
+    
     $fileInput.on('change', function(event) {
 
         fileList.push(...Array.from(event.target.files));
@@ -256,14 +287,14 @@ $(document).ready(function(){
 
     const deleteButtons = $('.deleteProduct');
     
-    $.each(deleteButtons, function(key, item){
+    $.each(deleteButtons, function(){
 
-        item.addEventListener('click', function(){
-            const id = item.querySelector('.hidden').hmtl;
+        $(this).on('click', function(){
+            const id = $(this).find('.hidden').text();
 
-            let prodName = item.parentElement.parentElement.parentElement.querySelector('.product-name').textContent;
+            let prodName = $(this).parent().parent().parent().find('.product-name').text();
 
-            $('.modal-delete .modal-delete-name').html('Tem certeza que deseja excluir o produto: ' + prodName + ' ?' )
+            $('.modal-delete .modal-delete-name').text('Tem certeza que deseja excluir o produto: ' + prodName + ' ?' )
 
             $('.overlay').addClass('show');
             
@@ -275,6 +306,7 @@ $(document).ready(function(){
 
             $('#deleteDenied').on('click', function(){
                 $('.modal-delete').removeClass('show');
+                $('.overlay').removeClass('show');
             });
 
             $('#deleteConfirmed').on('click', function(){

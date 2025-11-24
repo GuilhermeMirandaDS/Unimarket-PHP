@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Curso;
 use App\Models\Category;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -20,10 +21,14 @@ class UserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
 
-        return view('register');
+        $cursosModel = new Curso();
+        
+        $cursos = $cursosModel->findAll();
+
+        return view('register', ['cursos' => $cursos]);
     }
 
-    public function index()
+    public function allUsers()
     {
         $users = $this->User->findAll();
 
@@ -40,6 +45,11 @@ class UserController extends BaseController
 
         $user = $this->User->where('ra', $ra)->first();
 
+        $cursosModel = new Curso();
+
+        $curso = $cursosModel->where('id', $user->curso)->first();
+        $curso = $curso->nome;
+
         if ($user && password_verify($password, $user->password)){
 
             session()->set([
@@ -48,6 +58,7 @@ class UserController extends BaseController
                 'adm' => $user->admin,
                 'image' => $user->images,
                 'tag' => $user->tag,
+                'curso' => $curso,
                 'logged_in' => true,
             ]);
 
@@ -80,8 +91,6 @@ class UserController extends BaseController
         }
 
         // --- INÍCIO DO TRATAMENTO DE IMAGENS ---
-
-        $files = $this->request->getFiles();
         $imagePaths = [];
         
         $uploadDir = WRITEPATH . 'uploads/users/'; 
@@ -90,8 +99,8 @@ class UserController extends BaseController
             mkdir($uploadDir, 0777, true);
         }
 
-        $uploadedFiles = $files['images'] ?? [];
-
+        $uploadedFiles = $this->request->getFiles('image') ?? [];
+        
         // Se for um único arquivo, $uploadedFiles pode ser um objeto, então garantimos que seja um array
         if (!is_array($uploadedFiles)) {
             $uploadedFiles = [$uploadedFiles];
@@ -127,6 +136,12 @@ class UserController extends BaseController
         // --- FIM DO TRATAMENTO DE IMAGENS ---
 
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        $userExistsRa = $this->User->where('ra', $data['ra'])->first();
+
+        if ($userExistsRa){
+            return redirect()->to(base_url('/enter'))->with('error', 'RA já cadastrado');
+        };
 
         $this->User->insert($data);
 
@@ -167,8 +182,14 @@ class UserController extends BaseController
         ]);
     }
 
-    public function admin($ra)
+    public function admin()
     {
+        if (!session()->get('logged_in')){
+            return redirect()->to(base_url('/enter'));
+        }
+
+        $ra = session()->get('ra');
+        
         if(!$ra){
             return $this->response->setJSON([
                 'status' => 'error',

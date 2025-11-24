@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Curso;
 use App\Models\Category;
 use App\Models\Avaliacao;
 
@@ -26,6 +27,9 @@ class Home extends BaseController
 
         $allCategories = $categoryModel->findAll();
 
+        $categoryId1 = 0;
+        $categoryId2 = 0;
+
         foreach ($allCategories as $key => $item) {
             if ($key == 0) {
                 $categoryId1 = $item->id;
@@ -38,6 +42,8 @@ class Home extends BaseController
             $prodShow1 = $productModel->where('categoria', $categoryId1)->findAll();
             foreach ($prodShow1 as $item){
                 $item->vendedor = $userModel->where('ra', $item->vendedor)->first();
+                $cursoModel = new Curso;
+                $item->vendedor->curso = $cursoModel->where('id', $item->vendedor->curso)->first();
             }
 
             $category1 = $categoryModel->where('id', $categoryId1)->first();
@@ -48,6 +54,8 @@ class Home extends BaseController
             $prodShow2 = $productModel->where('categoria', $categoryId2)->findAll();
             foreach ($prodShow2 as $item){
                 $item->vendedor = $userModel->where('ra', $item->vendedor)->first();
+                $cursoModel = new Curso;
+                $item->vendedor->curso = $cursoModel->where('id', $item->vendedor->curso)->first();
             }
 
             $category2 = $categoryModel->where('id', $categoryId2)->first();
@@ -80,6 +88,9 @@ class Home extends BaseController
 
         $user = $userModel->where('ra', $ra)->first();
         $products = $productModel->where('vendedor', $ra)->findAll();
+
+        $cursoModel = new Curso;
+        $user->curso = $cursoModel->where('id', $user->curso)->first();
 
         $avalModel = new Avaliacao();
         $avaliacoes = $avalModel->where('user', $ra)->findAll();

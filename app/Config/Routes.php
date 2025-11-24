@@ -15,7 +15,7 @@ $routes->get('enter', 'UserController::enter'); // Para exibir a view
 $routes->post('users/login', 'UserController::login'); // Para processar o login
 $routes->post('users/register', 'UserController::register'); // Para processar o register
 $routes->get('logout', 'UserController::logOut');
-$routes->get('users/(:num)/admin', 'UserController::admin/$1');// Verifica cargo do usuário e redireciona
+$routes->get('users/admin', 'UserController::admin');// Verifica cargo do usuário e redireciona
 
 // Rotas dos produtos
 $routes->get('products/(:num)', 'ProductController::productInfo/$1');
@@ -28,3 +28,9 @@ $routes->post('products/addFeedback', 'ProductController::avaliar');
 // Rotas das categorias
 $routes->post('category/add', 'CategoryController::add');
 $routes->get('category/(:num)', 'CategoryController::get/$1');
+
+
+// Rotas dos eventos
+$routes->get('eventos', 'EventController::getAll');
+$routes->post('eventos/add', 'EventController::add');
+$routes->get('eventos/(:num)', 'EventController::eventInfo/$1');

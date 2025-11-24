@@ -145,12 +145,13 @@
                         <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 2V16C19 16.2652 18.8946 16.5196 18.7071 16.7071C18.5196 16.8946 18.2652 17 18 17H2C1.73478 17 1.48043 16.8946 1.29289 16.7071C1.10536 16.5196 1 16.2652 1 16V2C1 1.73478 1.10536 1.48043 1.29289 1.29289C1.48043 1.10536 1.73478 1 2 1H18C18.2652 1 18.5196 1.10536 18.7071 1.29289C18.8946 1.48043 19 1.73478 19 2ZM8.51 11.8L13.71 17H18C18.2652 17 18.5196 16.8946 18.7071 16.7071C18.8946 16.5196 19 16.2652 19 16V12.73L13.29 7L8.51 11.8ZM1 13.71V16C1 16.2652 1.10536 16.5196 1.29289 16.7071C1.48043 16.8946 1.73478 17 2 17H13.71L5.71 9L1 13.71Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <span>Arraste a imagem aqui</span>
                         <p>ou</p>
-                        <input type="file" name="images[]" id="images" id="fotosProduct" accept="image/*" multiple>
+                        <input type="file" name="images[]" id="images" accept="image/*" multiple>
                         <p class="quantidade-upload">0 arquivos selecionados</p>
                     </div>
                     <div class="aviso-fotos">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0003 8.99996V13V8.99996ZM10.2503 4.18996L2.6303 18C2.45398 18.3053 2.36153 18.6519 2.36231 19.0045C2.36309 19.3571 2.45708 19.7032 2.63475 20.0078C2.81242 20.3124 3.06745 20.5645 3.374 20.7388C3.68054 20.913 4.02771 21.0031 4.3803 21H19.6203C19.9729 21.0031 20.3201 20.913 20.6266 20.7388C20.9332 20.5645 21.1882 20.3124 21.3659 20.0078C21.5435 19.7032 21.6375 19.3571 21.6383 19.0045C21.6391 18.6519 21.5466 18.3053 21.3703 18L13.7503 4.18996C13.5773 3.87735 13.3238 3.61679 13.0161 3.43534C12.7083 3.2539 12.3576 3.1582 12.0003 3.1582C11.643 3.1582 11.2923 3.2539 10.9845 3.43534C10.6768 3.61679 10.4233 3.87735 10.2503 4.18996Z" stroke="#E43235" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.0502 17H11.9502" stroke="#E43235" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        Utilize fotos reais para divulgar seu produto!
+                        - Utilize fotos reais para divulgar seu produto! </br>
+                        - Tamanho recomendado: 600px x 600px ou formato 1:1 (quadrado)
                     </div>
                 </div>
     

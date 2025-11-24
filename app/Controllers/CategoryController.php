@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Curso;
 use App\Models\Category;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -16,6 +17,11 @@ class CategoryController extends BaseController
     }
 
     public function get($id){
+
+        if (!session()->get('logged_in')){
+            return redirect()->to(base_url('/enter'));
+        }
+        
         $prodModel = new Product();
         $userModel = new User();
         $catModel = new Category();
@@ -36,6 +42,8 @@ class CategoryController extends BaseController
         if (count($products) > 0) {
             foreach ($products as $item) {
                 $item->vendedor =  $userModel->where('ra', $item->vendedor)->first();
+                $cursoModel = new Curso;
+                $item->vendedor->curso = $cursoModel->where('id', $item->vendedor->curso)->first();
             }
 
             return view('catalog', [
@@ -120,10 +128,7 @@ class CategoryController extends BaseController
 
         session()->setFlashdata('success', 'Categoria adicionada com sucesso!');
 
-        return $this->response->setJSON([
-            'status' => 'success',
-            'message' => 'Categoria adicionada com sucesso!'
-        ])->setStatusCode(ResponseInterface::HTTP_CREATED);
+        return redirect()->to(base_url('/users/admin'));
     }
 }
 

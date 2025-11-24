@@ -29,7 +29,7 @@
                         ?>
                         <?php foreach ($image_names as $key=>$image_name): ?>
 
-                            <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-128.webp'; ?>
+                            <?php $image_url = $base_url_images . pathinfo($image_name, PATHINFO_FILENAME) . '-255.webp'; ?>
 
                             <div class="swiper-slide thumb">
                                 <img src="<?= $image_url ?>">
@@ -44,6 +44,35 @@
                 <h1 class="product-name"><?= $product->nome ?></h1>
 
                 <p class="product-desc"><?= $product->descricao ?></p>
+
+                <?php $media = 0;
+
+                    $quant = sizeof($avaliacoes);
+
+                    $total = 0;
+                
+                    foreach($avaliacoes as $item){
+
+                        $total = $total + $item->estrelas;
+
+                    }
+
+                    if ($quant > 0) {
+                        $media = $total / $quant;
+                    }
+
+                    if ($media > 0):
+                ?>
+
+                    <div class="product-rating">
+                        <div class="stars">
+                            <?php for($i = 0; $i < round($media); $i++): ?>
+                                <img src="<?= base_url('/assets/img/star.svg') ?>" alt="Star <?= $i ?>">
+                            <?php endfor; ?>
+                        </div>
+                        <?= esc($quant) ?>
+                    </div>
+                <?php endif; ?>
 
                 <?php if ($product->tags): 
                     $tagList = explode(" ", $product->tags);

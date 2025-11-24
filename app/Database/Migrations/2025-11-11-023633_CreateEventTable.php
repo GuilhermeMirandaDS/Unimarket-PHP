@@ -21,10 +21,27 @@ class CreateEventTable extends Migration
                 'null' => false,
             ],
             'data' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
                 'null' => false
             ],
+            'horario' => [
+                'type' => 'TIME',
+                'null' => false
+            ],
+            'local' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => false
+            ],
+            'link' => [
+                'type' => 'TEXT',
+                'null' => true
+            ],
             'images' => [
+                'type' => 'TEXT',
+                'null' => false,
+            ],
+            'imageCard' => [
                 'type' => 'TEXT',
                 'null' => false,
             ],
